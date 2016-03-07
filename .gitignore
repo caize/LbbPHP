@@ -2,3 +2,6 @@
 compile.log
 compile-errors.log
 ext/*
+.idea
+.idea/
+*.idea
