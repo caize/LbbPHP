@@ -1,0 +1,5 @@
+namespace LbbPHP;
+
+class Mysql{
+
+}

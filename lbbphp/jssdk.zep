@@ -1,0 +1,7 @@
+namespace LbbPHP;
+
+class Jssdk{
+
+
+
+}
