@@ -1,0 +1,6 @@
+namespace LbbPHP;
+
+class Upyun{
+
+
+}

@@ -73,6 +73,6 @@ class Page{
 
     //错误放回
     public function error(var info = "",string url = ""){
-        this->error(0,info,url);
+        this->response(0,info,url);
     }
 }
