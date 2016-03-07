@@ -7,7 +7,11 @@
  */
 return [
     "site_title"=>"LbbPHP",
-    "debug_mode"=>true,
+    "debug_mode"=>true,//是否开启调试模式
+    "domain"=>"localhost",
+    "site_url"=>"http://localhost/",
+    "static_url"=>"http://localhost/",
+    "themes"=>"default",
     "database"=>[
 
     ],

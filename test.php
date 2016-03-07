@@ -8,9 +8,5 @@
 $config = require "config.php";
 //var_dump($config);
 $page = new \LbbPHP\Page($config);
-
-
-$page->success("lbbniu","http://www.lbbniu.cn");
-echo "\n";
-$page->error("lbbniu","http://www.lbbniu.cn");
-echo "\n";
+$page ->setWebpath(dirname(__FILE__)."/");
+$page -> run();
