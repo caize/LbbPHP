@@ -1,12 +1,14 @@
 namespace LbbPHP;
 //自动加载类库
 class Loader{
-
     public function __construct(){
 
     }
 
     public function setClassesDir(){
+
+    }
+    public function load(array config){
 
     }
     //注册自动加载

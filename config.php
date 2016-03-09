@@ -13,7 +13,12 @@ return [
     "static_url"=>"http://localhost/",
     "themes"=>"default",
     "database"=>[
-
+        "write"=>"",
+        "read"=>"",
+        "dbname"=>"",
+        "dbuser"=>"",
+        "dbpass"=>"",
+        "dbext"=>"",
     ],
     "memcache"=>[
 

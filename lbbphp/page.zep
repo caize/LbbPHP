@@ -2,16 +2,24 @@ namespace LbbPHP;
 
 class Page{
 
-    protected cache;//mc缓存
-    protected dbm;//增删改数据库
-    protected dbs;//查数据库
+    protected cache{
+        get
+    };//mc缓存
+    protected dbm{
+        get
+    };//增删改数据库
+    protected dbs{
+        get
+    };//查数据库
     protected params = [];//请求url参数
     protected title;
     protected html;
     protected webpath="./"{
         set,get
     };
-    protected controllerDir = "./system/controllers/";
+    protected controllerDir = "./system/controllers/"{
+        set,get
+    };
 
     protected config=[];
 
@@ -20,7 +28,7 @@ class Page{
 
     //势力环
     public function __construct(array config){
-        var debug_mode = null,dir;
+        var debug_mode = false,dir,dbconfig,mcconfig;
         if fetch debug_mode,config["debug_mode"] {
             if debug_mode {
                 ini_set("error_reporting", E_ALL | E_STRICT);
@@ -32,12 +40,23 @@ class Page{
         if fetch dir,this->config["controllerDir"] {
             let this->controllerDir = dir;
         }
-        //连接数据,缓存系统等等
+        //连接数据
+        if fetch dbconfig ,config["database"]{
+            let this->dbm = new Mysql(dbconfig["write"],dbconfig["dbuser"],dbconfig["dbpass"],dbconfig["dbname"],debug_mode);
+            let this->dbs = new Mysql(dbconfig["read"],dbconfig["dbuser"],dbconfig["dbpass"],dbconfig["dbname"],debug_mode);
+        }else{
+            exit("LbbPHP error:缺少数据库配置database");
+        }
+        //缓存系统等等
+        if fetch mcconfig ,config["memcache"]{
+            let this->cache = new Memcache(mcconfig);
+        }
     }
 
     //运行应用
     public function run(){
         session_start();//开启session
+        ob_start("ob_gzhandler", 6);
         this->_parse_input();
         this->_send_headers();
         this->_load_controller();
@@ -118,7 +137,7 @@ class Page{
     }
 
     private function _send_headers(){
-        header("framework:lbbniu v1.0");
+        header("framework:lbbphp v1.0");
         header("website:www.lbbniu.cn,www.lbbniu.com,www.lbbniu.net");
         if(this->request[0]!="test"){
             header("P3P: CP=CURa ADMa DEVa PSAo PSDo OUR BUS UNI PUR INT DEM STA PRE COM NAV OTC NOI DSP COR");

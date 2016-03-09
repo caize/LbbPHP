@@ -1,5 +1,0 @@
-namespace LbbPHP;
-
-class Image{
-
-}
